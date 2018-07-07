@@ -2,11 +2,17 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/app/entry/entry.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
     filename: 'build.js'
+  },
+  resolve: {
+    extensions: ['.json', '.ts', 'tsx', '.js', '.vue'],
+    alias: {
+      '@': path.resolve(process.cwd(), 'src/app')
+    }
   },
   module: {
     rules: [
