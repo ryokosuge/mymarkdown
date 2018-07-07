@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/app/entry/entry.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
@@ -71,9 +71,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(process.cwd(), 'src/app')
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    extensions: ['.json', '.ts', 'tsx', '.js', '.vue'],
   },
   devServer: {
     contentBase: 'dist',
