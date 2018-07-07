@@ -8,12 +8,6 @@ module.exports = {
     publicPath: '/',
     filename: 'build.js'
   },
-  resolve: {
-    extensions: ['.json', '.ts', 'tsx', '.js', '.vue'],
-    alias: {
-      '@': path.resolve(process.cwd(), 'src/app')
-    }
-  },
   module: {
     rules: [
       {
@@ -77,9 +71,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(process.cwd(), 'src/app')
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    extensions: ['.json', '.ts', 'tsx', '.js', '.vue'],
   },
   devServer: {
     contentBase: 'dist',
