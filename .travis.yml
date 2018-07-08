@@ -1,0 +1,32 @@
+language: node_js
+
+node_js:
+    - '10.6.0'
+
+dist: trusty
+
+sudo: false
+
+cache: yarn
+
+notifications:
+    email:
+        on_success: never
+        on_failure: never
+
+branches:
+  only:
+    - master
+    - develop
+
+deploy:
+    - provider: script
+      script: yarn run build
+      skip_cleanup: true
+      on:
+          branch: develop
+    - provider: firebase
+      token: $FIREBASE_DEPLOY_TOKEN
+      skip_cleanup: true
+      on:
+          branch: develop
