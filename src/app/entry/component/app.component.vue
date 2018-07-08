@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <Home v-if="!isLogin"></Home>
-    <Editor v-if="isLogin" :user="userData"></Editor>
+    <v-app>
+      <v-content>
+        <Home v-if="!isLogin" :is-loading="isLoading"></Home>
+        <Editor v-if="isLogin" :user="userData"></Editor>
+      </v-content>
+    </v-app>
   </div>
 </template>
 
@@ -18,10 +22,12 @@ export default {
   data () {
     return {
       isLogin: false,
-      userData: null
+      userData: null,
+      isLoading: false
     }
   },
   created: function() {
+    this.isLoading = true;
     firebase.auth().onAuthStateChanged(user => {
       console.log(user);
       if (user) {
@@ -31,10 +37,14 @@ export default {
         this.isLogin = false;
         this.userData = null;
       }
+      this.isLoading = false;
     });
   }
 }
 </script>
 
 <style lang="scss">
+body {
+  height: 100%;
+}
 </style>
