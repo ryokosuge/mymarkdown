@@ -17,3 +17,5 @@ deploy:
   - provider: script
     script: yarn run build
     skip_cleanup: true
+    on:
+      branch: feature/travis-ci
