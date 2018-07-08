@@ -1,18 +1,12 @@
 language: node_js
-
 node_js:
-  - "10"
-
+- '10'
 dist: trusty
-
 sudo: false
-
 cache: yarn
-
 notifications:
   email:
     on_success: never
-
 deploy:
   - provider: script
     script: yarn run build
@@ -21,6 +15,7 @@ deploy:
       branch: feature/travis-ci
   - provider: firebase
     token:
-      secure: "LBCK/zD2MuZVCNXxT/ja28yHgyFboMfahGMkCTtIm+rp7ah9bt7vYDtbACRDK/wkHZzlqyr22aqjGh9Q2WdJOS5F5es1SKGewyauEKSrbEISK1+t5L72MaQwBAXE9DE9wZQi5G9CsZeJSpGKbslxCSQR6N0IWOOr98HsuQIIxfTyEClvhfazKamL/ZWZ+EGHs22n8HCvaxA1Yx6FLiPK1Ecu2DIQekHO7CH1bCraJqCNG6PHDF1Q2VwJPCAIlOEpyqbGWo/8LEBvX4wFr9pOLGeKh+j2C3D4oN1kLsVkmeTcdf4DvSy0JOM3h/6ajRSEfs6TJb1qRwddWuvbLxHJPmZzJb5TyHOH6k3NLDqL3aUCAXawPWZVTH3PXpXTkuHOAv/u1DG1CnSDf0rfibXvJ+fAYyF83jJ9sy0TjLVCuiMYdstEYzXNvaUmpAeG3Dx4TmgTBJmfU0Kv5JuP5ZgEbJBW7KuL29p/o507dzX1GrmBwXjGgZbbOwdtdsyhAQ48cxVR1cq+V7E5JVUVc3lRET5yzZ/ixe0t5uId/8jPdGJTIDlNw0xr9UO0K3Yt14oV6mqrhKpicun3Flfe8jFtWTkBgLci5uw/VsMPSgGIb7lPYZ8czREYVIlT81Xa1O57U33kdqdvcxZFE71DZjHmjBdGMb35m+36Q5mxfrdJdnc="
+      secure: 3LTS6Vmx6O/C26+BhPJjY5MbtMTvvWxn2Wh05OoA8G/B1F+B6BFlFVXYFxxsOPAD/5nDJsE90Iy2XXu6IGeihJGzPEEKypbIJHUNDkQrIxidrzqZwsSjq7UhZsZ/OcrJvAOIY+UxoGmhrzP7QbIzXCMX7HjjdFERdfdxFqcto4GrVuT9xdTA9Gz4lOzsNFDmYKA2YMw7JB9EykrwQT1kPriGOPRZPMQmZonCBJeJDGqIZ5VPyJH9BEptZubcNVyjzMsPmwkfTmzVkagackpk2a11Rk/cSnyz/xebEAsVQ3bbgM0xMtX3z94gqfX/12wNFTnExpvCMVWIEvD805Kf7rUcBhv7KJDpUf8DamWC20XwZGSUi8w6749ZZf57R6oKlMabeCSpVzNnJ0n2VwqvDCRi35hgUHtnoeCQOuJhnZ3IbuEct4o146UyZnzA8Gk+qCY2n4eWX6zLOKQbWnR9sNq7alo03yyQuyjKX2cAo3jT6q6JM+VNN6vmyvmtln6Ln/HAAb/PsPJH5BZZfWd58as4Y9NVtT3nwCMoW6QHU3wZiwvV93RfYTSjMBGfVuIgUo+sGXnOmXbYH1cyMSZ7DoYtKVASFXg/seDU6kjtKSmypHQSV5yk4myaZQRt0RU2gThyTmKEgkc6s3Znmnw5z3qX2f2qfDu7Dp33IZ2VWMU=
+    skip_cleanup: true
     on:
       branch: feature/travis-ci
