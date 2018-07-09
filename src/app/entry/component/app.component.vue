@@ -10,8 +10,4 @@
 </template>
 
 <script lang="ts" src="./app.component.ts"></script>
-<style lang="scss">
-body {
-  height: 100%;
-}
-</style>
+<style lang="scss" src="./app.component.scss"></style>
