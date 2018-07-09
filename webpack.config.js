@@ -13,6 +13,13 @@ module.exports = {
     publicPath: '/',
     filename: 'build.js'
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(process.cwd(), 'src/app')
+    },
+    extensions: ['.json', '.ts', 'tsx', '.js', '.vue'],
+  },
   module: {
     rules: [
       {
@@ -61,6 +68,13 @@ module.exports = {
         }
       },
       {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
@@ -73,13 +87,6 @@ module.exports = {
         }
       }
     ]
-  },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve(process.cwd(), 'src/app')
-    },
-    extensions: ['.json', '.ts', 'tsx', '.js', '.vue'],
   },
   devServer: {
     contentBase: 'dist',
