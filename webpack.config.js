@@ -1,8 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+
+const isDevelop = (process.env.NODE_ENV === 'development');
 
 module.exports = {
   entry: './src/app/entry/entry.js',
@@ -88,7 +90,7 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map',
+  devtool: (isDevelop) ? 'eval-source-map' : 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/app/templates/index.html'),
@@ -96,27 +98,30 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: '404.html',
       template: path.resolve(__dirname, './src/app/templates/404.html'),
-    })
+    }),
+    ...(isDevelop) ? [
+      new ProgressBarPlugin()
+    ] : [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: '"production"'
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        compress: {
+          warnings: false
+        }
+      }),
+      new webpack.LoaderOptionsPlugin({
+        minimize: true
+      })
+    ]
   ]
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
   ])
 }
