@@ -9,7 +9,7 @@
         >
         <img src="../../assets/logo.png">
         <h1 class="white--text ma-3 display-1 text-xs-center">{{ msg }}</h1>
-        <v-btn large light color="light-blue" @click.native="googleLogin" class="white--text" :loading="isLoading" :disabled="isLoading">
+        <v-btn large light color="light-blue" @click.native="googleLogin" class="white--text" :loading="loading" :disabled="loading">
           <v-icon dark left>fab fa-google</v-icon>
           Google アカウントでログイン
         </v-btn>
@@ -19,6 +19,9 @@
 </template>
 
 <script>
+import * as firebase from 'firebase/app'
+import 'firebase/auth';
+
 export default {
   name: 'home',
   props: [
@@ -27,17 +30,24 @@ export default {
   data() {
     return {
       msg: 'Welcome to MyMarkdown',
+      loading: false,
       windowHeight: 0
+    }
+  },
+  watch: {
+    isLoading (val) {
+      this.loading = val;
     }
   },
   methods: {
     googleLogin: function() {
-      this.isLoading = true;
+      this.loading = true;
       firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
     }
   },
   beforeMount: function() {
     this.windowHeight = window.innerHeight;
+    this.loading = this.isLoading;
   }
 }
 </script>

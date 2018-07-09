@@ -26,6 +26,10 @@
 
 <script>
 import marked from 'marked';
+import * as firebase from 'firebase/app'
+import 'firebase/auth';
+import 'firebase/database';
+
 export default {
   name: 'editor',
   props: ['user'],
