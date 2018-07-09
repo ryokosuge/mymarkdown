@@ -1,7 +1,8 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
 
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/app/entry/entry.js',
@@ -87,19 +88,22 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/app/templates/index.html'),
+    }),
+    new HtmlWebpackPlugin({
+      filename: '404.html',
+      template: path.resolve(__dirname, './src/app/templates/404.html'),
+    })
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(process.cwd(), 'src/app/templates/'),
-        to: path.resolve(process.cwd(), 'dist')
-      }
-    ]),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
