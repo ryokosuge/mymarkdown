@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "paths": {
+      "@/*": ["src/app/*"]
+    },
+    "strict": true,
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "plugins": [
+      {
+        "name": "vue-ts-plugin"
+      }
+    ],
+    "sourceMap": true
+  },
+  "include": [
+    "src/app/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
