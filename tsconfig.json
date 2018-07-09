@@ -7,6 +7,8 @@
     "strict": true,
     "moduleResolution": "node",
     "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
     "plugins": [
       {
         "name": "vue-ts-plugin"
@@ -14,8 +16,10 @@
     ],
     "sourceMap": true
   },
+  "compileOnSave": false,
   "include": [
-    "src/app/**/*.ts"
+    "src/app/**/*.ts",
+    "src/types/*.ts"
   ],
   "exclude": [
     "node_modules"
