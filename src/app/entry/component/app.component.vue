@@ -2,8 +2,12 @@
   <div id="app">
     <v-app>
       <v-content>
-        <Home v-if="!isLogin" :is-loading="isLoading"></Home>
-        <Editor v-if="isLogin" :user="userData"></Editor>
+        <transition name="fade">
+          <Home v-if="!isLogin" :is-loading="isLoading"></Home>
+        </transition>
+        <transition name="fade">
+          <Editor v-if="isLogin" :user="userData"></Editor>
+        </transition>
       </v-content>
     </v-app>
   </div>
