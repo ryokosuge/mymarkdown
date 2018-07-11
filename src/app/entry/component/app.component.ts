@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import * as firebase from 'firebase/app'
-import 'firebase/auth';
+import Vue from "vue";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
-import Home from '@/components/pages/Home.vue';
-import Editor from '@/components/pages/Editor.vue';
+import Home from "@/components/Home/home.vue";
+import Editor from "@/components/Editor/editor.vue";
 
 export default Vue.extend({
   name: 'App',
@@ -15,13 +15,11 @@ export default Vue.extend({
     return {
       isLogin: false,
       userData: null,
-      isLoading: false
+      isLoading: true
     }
   },
-  created () {
-    this.isLoading = true;
+  mounted() {
     firebase.auth().onAuthStateChanged((user: any) => {
-      console.log(user);
       if (user) {
         this.isLogin = true;
         this.userData = user;
