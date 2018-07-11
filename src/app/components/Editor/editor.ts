@@ -9,6 +9,9 @@ export default Vue.extend({
   props: [ "user" ],
   data() {
     return {
+      drawer: true,
+      left: null,
+      tab: 0,
       memos: [
         {
           markdown: ""
@@ -29,14 +32,18 @@ export default Vue.extend({
     addMemo: function() {
       this.memos.push(
         {
-          markdown: ""
+          markdown: "# 無題のメモ"
         }
       );
       this.selectedIndex = this.memos.length - 1;
     },
     deleteMemo: function() {
       this.memos.splice(this.selectedIndex, 1);
-      this.selectedIndex = (this.selectedIndex > 0) ? this.selectedIndex - 1 : 0;
+      if (this.memos.length) {
+        this.selectedIndex -= 1;
+      } else {
+        this.addMemo();
+      }
     },
     saveMemos: function() {
       firebase.database().ref("memos/" + this.user.uid).set(this.memos);
