@@ -21,44 +21,4 @@
     </v-content>
   </v-app>
 </template>
-
-<script>
-import * as firebase from 'firebase/app'
-import 'firebase/auth';
-
-export default {
-  name: 'home',
-  props: [
-    'isLoading'
-  ],
-  data() {
-    return {
-      msg: 'Welcome to MyMarkdown',
-      loading: false,
-      windowHeight: 0
-    }
-  },
-  watch: {
-    isLoading (val) {
-      this.loading = val;
-    }
-  },
-  methods: {
-    googleLogin: function() {
-      this.loading = true;
-      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    }
-  },
-  beforeMount: function() {
-    this.windowHeight = window.innerHeight;
-    this.loading = this.isLoading;
-  }
-}
-</script>
-
-<style lang="scss" scoped>
-#home {
-  height: 100%;
-}
-</style>
-
+<script lang="ts" src="./home.ts"></script>

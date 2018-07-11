@@ -1,9 +1,11 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import App from './component/app.component.vue';
-import firebase from 'firebase';
+import Vue from "vue";
+import Vuetify from "vuetify";
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
+
+import * as firebase from "firebase/app";
+import 'firebase/auth';
 
 // Initialize Firebase
 var config = {
@@ -16,12 +18,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+import App from "@/entry/component/app.component.vue";
 
 export function createApp() {
   const app = new Vue({
     components: { App },
-    render: h => h("App", {})
+    render: (h) => h("App", { })
   });
-  return { app };
-}
+  return { app }
+};
