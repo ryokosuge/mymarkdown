@@ -6,6 +6,7 @@ module.exports = {
   },
   "extends": [
     "eslint:recommended",
+    "plugin:vue/recommended",
     "plugin:vue/essential"
   ],
   "parserOptions": {
@@ -18,7 +19,7 @@ module.exports = {
   "rules": {
     "indent": [
       "error",
-      4
+      2
     ],
     "linebreak-style": [
       "error",
