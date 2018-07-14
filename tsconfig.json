@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "es2015",
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/app/*"]
     },
-    "strict": true,
-    "moduleResolution": "node",
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": false,
     "plugins": [
       {
         "name": "vue-ts-plugin"
