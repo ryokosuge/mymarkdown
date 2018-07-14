@@ -3,39 +3,11 @@
     id="editor"
     class="grey lighten-4"
   >
-    <v-toolbar
-      color="amber"
-      fixed
-      app
-      tabs
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
-      <v-toolbar-title>MyMarkdown</v-toolbar-title>
-      <v-spacer/>
-      <v-tabs
-        slot="extension"
-        v-model="tab"
-        light
-        color="amber"
-        slider-color="grey darken-4"
-      >
-        <v-tab
-          href="#editor"
-        >
-          Markdown
-        </v-tab>
-        <v-tab
-          href="#preview"
-        >
-          Preview
-        </v-tab>
-      </v-tabs>
-    </v-toolbar>
     <v-navigation-drawer
       v-model="drawer"
-      class="grey lighten-4"
       fixed
       app
+      class="grey lighten-4"
     >
       <v-list
         dense
@@ -49,7 +21,7 @@
           >
             <v-list-tile-action>
               <v-icon
-                v-if="index == selectedIndex"
+                v-if="index === selectedIndex"
                 color="pink"
               >check</v-icon>
             </v-list-tile-action>
@@ -89,18 +61,42 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+    <v-toolbar
+      color="amber"
+      fixed
+      app
+      tabs
+    >
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
+      <v-toolbar-title>MyMarkdown</v-toolbar-title>
+      <v-tabs
+        slot="extension"
+        v-model="tab"
+        light
+        color="amber"
+        slider-color="grey darken-4"
+      >
+        <v-tab
+          href="#editor"
+        >
+          Markdown
+        </v-tab>
+        <v-tab
+          href="#preview"
+        >
+          Preview
+        </v-tab>
+      </v-tabs>
+    </v-toolbar>
     <v-content>
       <v-container fill-height>
         <v-layout
           fill-height
-          column>
+          column
+        >
           <v-tabs-items v-model="tab">
             <v-tab-item id="editor">
-              <v-textarea
-                v-model="memos[selectedIndex].markdown"
-                box
-                auto-grow
-              />
+              <v-textarea v-model="memos[selectedIndex].markdown"/>
             </v-tab-item>
             <v-tab-item id="preview">
               <div v-html="preview"/>
@@ -113,4 +109,4 @@
 </template>
 
 <script lang="ts" src="./editor.ts"></script>
-<style lang="scss" src="./editor.scss"></style>
+<style lang="scss" src="./editor.scss" scoped></style>

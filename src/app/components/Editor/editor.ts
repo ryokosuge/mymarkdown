@@ -6,18 +6,22 @@ import "firebase/database";
 
 export default Vue.extend({
   name: "editor",
-  props: ["user"],
+  props: {
+    user: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       drawer: true,
-      left: null,
       tab: 0,
+      selectedIndex: 0,
       memos: [
         {
           markdown: ""
         }
-      ],
-      selectedIndex: 0
+      ]
     };
   },
   computed: {
@@ -40,7 +44,11 @@ export default Vue.extend({
     deleteMemo(): void {
       this.memos.splice(this.selectedIndex, 1);
       if (this.memos.length) {
-        this.selectedIndex -= 1;
+        if (this.selectedIndex > 1) {
+          this.selectedIndex -= 1;
+        } else {
+          this.selectedIndex = 0;
+        }
       } else {
         this.addMemo();
       }

@@ -5,7 +5,12 @@ import "firebase/auth";
 
 export default Vue.extend({
   name: "home",
-  props: [ "isLoading" ],
+  props: {
+    isLoading: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       msg: "Welcome to MyMarkdown",
