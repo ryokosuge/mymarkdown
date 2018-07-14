@@ -5,7 +5,8 @@ module.exports = {
     "es6": true
   },
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:vue/essential"
   ],
   "parserOptions": {
     "ecmaFeatures": {
