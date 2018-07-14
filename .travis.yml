@@ -19,12 +19,10 @@ branches:
     - master
     - develop
 
+script: yarn run lint
+
+before_deploy: yarn run build
 deploy:
-    - provider: script
-      script: yarn run build
-      skip_cleanup: true
-      on:
-          branch: develop
     - provider: firebase
       token: $FIREBASE_DEPLOY_TOKEN
       skip_cleanup: true
