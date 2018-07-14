@@ -1,15 +1,16 @@
 import Vue from "vue";
 import Vuetify from "vuetify";
 
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+// Ensure you are using css-loader
+import "vuetify/dist/vuetify.min.css";
 
 Vue.use(Vuetify);
 
 import * as firebase from "firebase/app";
-import 'firebase/auth';
+import "firebase/auth";
 
 // Initialize Firebase
-var config = {
+const config = {
   apiKey: "AIzaSyBIu95pj4hOtPcWZt3hP37vrBTOzvGEfck",
   authDomain: "mymarkdown-9c228.firebaseapp.com",
   databaseURL: "https://mymarkdown-9c228.firebaseio.com",
@@ -26,5 +27,5 @@ export function createApp() {
     components: { App },
     render: (h) => h("App", { })
   });
-  return { app }
-};
+  return { app };
+}

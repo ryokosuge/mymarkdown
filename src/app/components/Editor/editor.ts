@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from "vue";
 import * as marked from "marked";
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -6,7 +6,7 @@ import "firebase/database";
 
 export default Vue.extend({
   name: "editor",
-  props: [ "user" ],
+  props: ["user"],
   data() {
     return {
       drawer: true,
@@ -18,18 +18,18 @@ export default Vue.extend({
         }
       ],
       selectedIndex: 0
-    }
+    };
   },
   computed: {
-    markdown: function() {
+    markdown(): string {
       return this.memos[this.selectedIndex].markdown;
     },
-    preview: function() {
+    preview(): string {
       return marked(this.markdown);
     }
   },
   methods: {
-    addMemo: function() {
+    addMemo(): void {
       this.memos.push(
         {
           markdown: "# 無題のメモ"
@@ -37,7 +37,7 @@ export default Vue.extend({
       );
       this.selectedIndex = this.memos.length - 1;
     },
-    deleteMemo: function() {
+    deleteMemo(): void {
       this.memos.splice(this.selectedIndex, 1);
       if (this.memos.length) {
         this.selectedIndex -= 1;
@@ -45,20 +45,23 @@ export default Vue.extend({
         this.addMemo();
       }
     },
-    saveMemos: function() {
-      firebase.database().ref("memos/" + this.user.uid).set(this.memos);
+    saveMemos(): void {
+      firebase
+        .database()
+        .ref("memos/" + this.user.uid)
+        .set(this.memos);
     },
-    selectMemo: function(index: number) {
+    selectMemo(index: number): void {
       this.selectedIndex = index;
     },
-    displayTitle: function(text: string) {
+    displayTitle(text: string): string {
       return text.split(/\n/)[0];
     },
-    logout: function() {
+    logout() {
       firebase.auth().signOut();
     }
   },
-  created: function() {
+  created() {
     firebase
       .database()
       .ref("memos/" + this.user.uid)
@@ -67,6 +70,6 @@ export default Vue.extend({
         if (value.val()) {
           this.memos = value.val();
         }
-      })
+      });
   }
 });

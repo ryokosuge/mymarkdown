@@ -2,21 +2,21 @@ import Vue from "vue";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
-import Home from "@/components/Home/home.vue";
-import Editor from "@/components/Editor/editor.vue";
+import home from "@/components/Home/home.vue";
+import editor from "@/components/Editor/editor.vue";
 
 export default Vue.extend({
-  name: 'App',
+  name: "app",
   components: {
-    Home,
-    Editor
+    home,
+    editor
   },
-  data () {
+  data() {
     return {
       isLogin: false,
       userData: null,
       isLoading: true
-    }
+    };
   },
   mounted() {
     firebase.auth().onAuthStateChanged((user: any) => {
@@ -30,4 +30,4 @@ export default Vue.extend({
       this.isLoading = false;
     });
   }
-})
+});

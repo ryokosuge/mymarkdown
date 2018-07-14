@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <transition name="fade">
-      <Home v-if="!isLogin" :is-loading="isLoading"></Home>
+      <Home
+        v-if="!isLogin"
+        :is-loading="isLoading"/>
     </transition>
     <transition name="fade">
-      <Editor v-if="isLogin" :user="userData"></Editor>
+      <Editor
+        v-if="isLogin"
+        :user="userData"/>
     </transition>
   </div>
 </template>
