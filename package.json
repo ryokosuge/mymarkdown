@@ -6,10 +6,22 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "lint:es": "eslint --ext .js,.vue src/app",
+    "lint:ts": "tslint \"src/**/*.ts\"",
+    "lint": "yarn run lint:es && yarn run lint:ts",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "test": "echo Test"
   },
+  "engines": {
+    "node": "10.6.0",
+    "yarn": "1.7.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "dependencies": {
     "firebase": "^5.2.0",
     "html-webpack-plugin": "^3.2.0",
@@ -17,11 +29,6 @@
     "vue": "^2.5.11",
     "vuetify": "^1.1.1"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
   "devDependencies": {
     "@types/marked": "^0.4.0",
     "babel-core": "^6.26.0",
@@ -31,11 +38,16 @@
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "eslint": "^5.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.5.0",
     "file-loader": "^1.1.4",
     "node-sass": "^4.5.3",
     "progress-bar-webpack-plugin": "^1.11.0",
     "sass-loader": "^6.0.6",
     "ts-loader": "3.5.0",
+    "tslint": "^5.10.0",
+    "tslint-loader": "^3.6.0",
     "typescript": "^2.9.2",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",

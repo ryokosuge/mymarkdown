@@ -4,28 +4,34 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default Vue.extend({
-  name: 'home',
-  props: [ "isLoading" ],
+  name: "home",
+  props: {
+    isLoading: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       msg: "Welcome to MyMarkdown",
       loading: false,
       windowHeight: 0
-    }
+    };
   },
   watch: {
-    isLoading: function(val) {
+    isLoading(val): void {
       this.loading = val;
     }
   },
   methods: {
-    googleLogin: function() {
+    googleLogin(): void {
       this.loading = true;
-      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithRedirect(provider);
     }
   },
-  beforeMount: function() {
+  beforeMount(): void {
     this.windowHeight = window.innerHeight;
     this.loading = this.isLoading;
   }
-})
+});

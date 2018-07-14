@@ -1,38 +1,13 @@
 <template>
-  <v-app id="editor" class="grey lighten-4">
-    <v-toolbar
-      color="amber"
-      fixed
-      app
-      tabs
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>MyMarkdown</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-tabs
-        slot="extension"
-        light
-        v-model="tab"
-        color="amber"
-        slider-color="grey darken-4"
-      >
-        <v-tab
-          href="#editor"
-        >
-          Markdown
-        </v-tab>
-        <v-tab
-          href="#preview"
-        >
-          Preview
-        </v-tab>
-      </v-tabs>
-    </v-toolbar>
+  <v-app
+    id="editor"
+    class="grey lighten-4"
+  >
     <v-navigation-drawer
       v-model="drawer"
-      class="grey lighten-4"
       fixed
       app
+      class="grey lighten-4"
     >
       <v-list
         dense
@@ -45,13 +20,19 @@
             @click.stop="selectMemo(index)"
           >
             <v-list-tile-action>
-              <v-icon v-if="index == selectedIndex" color="pink">check</v-icon>
+              <v-icon
+                v-if="index === selectedIndex"
+                color="pink"
+              >check</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>{{ displayTitle(memo.markdown) }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-divider :key="index" light></v-divider>
+          <v-divider
+            :key="index"
+            light
+          />
         </template>
         <v-subheader>アクション</v-subheader>
         <v-list-tile @click.stop="addMemo">
@@ -80,19 +61,45 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+    <v-toolbar
+      color="amber"
+      fixed
+      app
+      tabs
+    >
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
+      <v-toolbar-title>MyMarkdown</v-toolbar-title>
+      <v-tabs
+        slot="extension"
+        v-model="tab"
+        light
+        color="amber"
+        slider-color="grey darken-4"
+      >
+        <v-tab
+          href="#editor"
+        >
+          Markdown
+        </v-tab>
+        <v-tab
+          href="#preview"
+        >
+          Preview
+        </v-tab>
+      </v-tabs>
+    </v-toolbar>
     <v-content>
       <v-container fill-height>
-        <v-layout fill-height column>
+        <v-layout
+          fill-height
+          column
+        >
           <v-tabs-items v-model="tab">
             <v-tab-item id="editor">
-              <v-textarea
-                box
-                auto-grow
-                v-model="memos[selectedIndex].markdown"
-              ></v-textarea>
+              <v-textarea v-model="memos[selectedIndex].markdown"/>
             </v-tab-item>
             <v-tab-item id="preview">
-              <div v-html="preview"></div>
+              <div v-html="preview"/>
             </v-tab-item>
           </v-tabs-items>
         </v-layout>
@@ -102,4 +109,4 @@
 </template>
 
 <script lang="ts" src="./editor.ts"></script>
-<style lang="scss" src="./editor.scss"></style>
+<style lang="scss" src="./editor.scss" scoped></style>
