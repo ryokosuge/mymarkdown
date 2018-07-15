@@ -69,6 +69,45 @@
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
       <v-toolbar-title>MyMarkdown</v-toolbar-title>
+      <v-spacer />
+      <v-menu
+        left
+      >
+        <v-btn
+          slot="activator"
+          icon
+        >
+          <v-avatar
+            size="36px"
+          >
+            <img
+              :src="user.photoURL"
+              alt="Avatar"
+            >
+          </v-avatar>
+        </v-btn>
+        <v-list>
+          <v-list-tile avatar>
+            <v-list-tile-avatar>
+              <img
+                :src="user.photoURL"
+                alt="Avatar"
+              >
+            </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ user.displayName }}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ user.email }}</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-divider/>
+          <v-list-tile @click.stop="logout">
+            <v-list-tile-action>
+              <v-icon>fas fa-sign-out-alt</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-title>ログアウト</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
       <v-tabs
         slot="extension"
         v-model="tab"
